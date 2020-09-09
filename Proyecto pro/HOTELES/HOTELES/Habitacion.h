@@ -7,18 +7,38 @@
 #define	HABITACION_H
 #include "Reservacion.h"
 #include "Cliente.h"
+static const float ValorAdultoTodoIn = 300.00;
+static const float ValorNinoTodoIn = 200.00;
+static const float ValorNocheSim1 = 150.00;
+static const float ValorNocheSim2 = 250.00;
+static const float ValorNocheSim3 = 350.00;
+static const float ValorNocheSim4 = 400.00;
 class Habitacion {
 private:
-	char Identificador;
+	string Identificador;
+	string clase;
 	char Estado;
-	Cliente* Habitacion1;
-	Reservacion* Habitacion2;
+	int camas;
+	Cliente* HabiClie;
+	Reservacion* HabiReser;
 public:
 	Habitacion();
-	Habitacion(char, char);
-	string ImprimeHabitacion();
+	Habitacion(string,string,char,int);
+	void setHabiClie(Cliente*);
+	void setHabiReser(Reservacion*);
+	Cliente* getHabiClie();
+	Reservacion* getHabiReser();
+	void setEstado(char);
+	char getEstado();
+	string getclase();
+	int getpacama();
+	//recordar que hayq ue poner los set y get que se vallan a ocupar mas adelante no se saben todavia 
+	string ImprimeHabitacionConReserva();
 	~Habitacion();
-
+	string ImprimeHabitacion();
+	string ImprimeMontoPagar();
+	string HabitacionTodoIncluido();
+	string HabitacionSimple();
 };
 
 #endif /* HABITACION_H */

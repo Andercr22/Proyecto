@@ -2,23 +2,27 @@
  * Author: Luis Ignacio López Castro y Anderson Mora Aguero
  * Created on 26 de agosto de 2020, 7:35 PM
  */
-#include <iostream>
-#include <sstream>
-#include <string>
-using namespace std;
 #ifndef RESERVACION_H
-#define	RESERVACION_H
+#define    RESERVACION_H
+#include"Cliente.h"
+using namespace std;
 class Reservacion {
 private:
+	Cliente* reservacionClie;
+	string NumeroDeReser;
 	int Adultos;
 	int Ninos;
 	int Ndias;
 	float Monto;
-	bool Estancia;
+	bool todoIN;
+	string DiaEn;
+	string DiaSalida;
+	int horadEntr;
+	int horaSali;
 
 public:
 	Reservacion();
-	Reservacion(int, int, int, float, bool);
+	Reservacion(string,int, int, int, float, bool,string,string, int, int,Cliente*);
 	string ImprimeReservacion();
 
 
@@ -32,4 +36,4 @@ public:
 
 
 };
-#endif /* RESERVACION_H */
+#endif / RESERVACION_H */
