@@ -21,6 +21,7 @@ private:
 	int camas;
 	Cliente* HabiClie;
 	Reservacion* HabiReser;
+	string Tipo;
 public:
 	Habitacion();
 	Habitacion(string,string,char,int);
@@ -32,13 +33,21 @@ public:
 	char getEstado();
 	string getclase();
 	int getpacama();
+	float valorClase();
+	string getIdentificador();
+
+	
 	//recordar que hayq ue poner los set y get que se vallan a ocupar mas adelante no se saben todavia 
 	string ImprimeHabitacionConReserva();
 	~Habitacion();
 	string ImprimeHabitacion();
+	string PagoTodoIncluido();
 	string ImprimeMontoPagar();
 	string HabitacionTodoIncluido();
 	string HabitacionSimple();
+	string costoSinInclu();
+	bool descuentoNocturn();
+	string ImprimeMontoSinIn();
 };
 
 #endif /* HABITACION_H */

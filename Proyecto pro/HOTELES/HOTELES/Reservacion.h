@@ -19,12 +19,20 @@ private:
 	string DiaSalida;
 	int horadEntr;
 	int horaSali;
+	string Tipo;
 
 public:
 	Reservacion();
-	Reservacion(string,int, int, int, float, bool,string,string, int, int,Cliente*);
+	Reservacion(string,int, int, int, float, bool,string,string, int, int,Cliente*,string);
 	string ImprimeReservacion();
-
+	string getTipo();
+	void setTipo(string);
+	int getAdultos();
+	int getNinos();
+	void settodoIN(bool);
+	bool gettodoIN();
+	int getHoraEntra();
+	int getNdias();
 
 
 

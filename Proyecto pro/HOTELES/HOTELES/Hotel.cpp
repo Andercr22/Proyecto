@@ -46,3 +46,28 @@ string Hotel::ImprimeHabitacionesXcamas(int z) {
 	}
 	return s.str();
 }
+
+string Hotel::ImprimeHabitacion(string h) {
+	stringstream s;
+	for (int i = 0; i < x; i++) {
+		for (int j = 0; j < y; j++) {
+			if (matriz[i][j]->getIdentificador() == h)
+				s << matriz[i][j]->ImprimeHabitacionConReserva() << endl;
+		}
+	}
+	return s.str();
+}
+
+bool Hotel::Comprobar(string ide) {
+	for (int i = 0; i < x; i++) {
+		for (int j = 0; j < y; j++) {
+			if (matriz[i][j]->getIdentificador() == ide) {
+				char est = matriz[i][j]->getEstado();
+				if (est == 'L')
+					return true;
+			}			
+		}
+	}
+	return false;
+}
+

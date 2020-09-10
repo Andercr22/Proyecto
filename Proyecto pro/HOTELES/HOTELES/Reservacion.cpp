@@ -15,9 +15,10 @@ Reservacion::Reservacion() {
 	horadEntr =0;
 	horaSali = 0;
 	reservacionClie = NULL;
+	Tipo = "";
 }
 
-Reservacion::Reservacion(string l,int A, int N, int D, float M, bool E,string z,string v,int x,int y, Cliente* c) {
+Reservacion::Reservacion(string l,int A, int N, int D, float M, bool E,string z,string v,int x,int y, Cliente* c,string T) {
 	NumeroDeReser = l;
 	Adultos = A;
 	Ninos = N;
@@ -29,13 +30,45 @@ Reservacion::Reservacion(string l,int A, int N, int D, float M, bool E,string z,
 	horadEntr = x;
 	horaSali = y;
 	reservacionClie = c;
+	Tipo = T;
 }
+
+void Reservacion::setTipo(string t) {
+	Tipo = t;
+}
+string Reservacion::getTipo() {
+	return Tipo;
+}
+
+int Reservacion::getAdultos() {
+	return Adultos;
+}
+int Reservacion::getNinos() {
+	return Ninos;
+}
+
+void Reservacion::settodoIN(bool in) {
+	todoIN = in;
+
+}
+bool Reservacion::gettodoIN() {
+	return todoIN;
+}
+
+int Reservacion::getHoraEntra() {
+	return horadEntr;
+}
+
+int Reservacion::getNdias() {
+	return Ndias;
+}
+
 
 string Reservacion::ImprimeReservacion() {
 	stringstream s;
 	s << "Num de reservacion: " << NumeroDeReser << endl;
 	s << reservacionClie->imprimeCliente();
-	if (todoIN)
+	if (todoIN)//revisar lo que le esta entrando a este booleano
 		s << "Todo incluido: si" << endl;
 	else
 		s << "Todo includo: no" << endl;

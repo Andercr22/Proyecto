@@ -28,5 +28,6 @@ public:
 	float calculaTodoIn();
 	float calculaSinIn();
 	string ImprimeCaculas();
+	bool Comprobar(string);
 };
 #endif /*HOTEL*/
