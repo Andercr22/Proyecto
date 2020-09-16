@@ -4,15 +4,17 @@
  */
 #include "Interfaz.h"
 void Interfaz::menu() {
-	int opc1, opc2, opc4, opc5, id,idreservacion, tipopago, tel, cantpersonas, cantninos, cantadultos, diaentra, mesentra, anoentra, diasale, messale, anosale, horasale, horaentra, minutosale, minutoentra,liberar;
+	int opc1, opc2, opc4, opc5, tel, cantpersonas, cantninos, cantadultos, diaentra, mesentra, anoentra, diasale, messale, anosale, horasale, horaentra, minutosale, minutoentra, ndias;
 	float cuenta;
-	string nombre, incluido, opc3, idhabitacion;
-
+	int cont = 1000;
+	int contnino = 0; int  conadulto = 0;
+	string nombre, opc3, idhabitacion, id, tipopago, numreserva,confirmar, idreservacion,liberar;
+	bool incluido;
 	//PRUEBA DE OBJETOS
-	Cliente* C = new Cliente("Anderson", "200", "tarjeta de debito", 1010, 0202);
+	Cliente* C1 = new Cliente("Anderson", "200", "tarjeta de debito", 1010, 0202);
 	Habitacion* H1 = new Habitacion("A1", "PC", 'L', 1);
 	Habitacion* H2 = new Habitacion("A2", "SC", 'O', 2);
-	Habitacion* H3 = new Habitacion("A3", "TC", 'M', 3);
+	Habitacion* H3 = new Habitacion("A3", "SC", 'L', 5);
 	Habitacion* H4 = new Habitacion("A4", "PC", 'L', 4);
 	Habitacion* H5 = new Habitacion("A5", "SC", 'O', 5);
 	Habitacion* H6 = new Habitacion("A6", "TC", 'M', 1);
@@ -128,7 +130,7 @@ void Interfaz::menu() {
 				else {
 					cout << "**Agregar IF... SI  NO POSEE RESERVACION MOSTRAR LO SIGUIENTE:" << endl;
 					cout << "**MOSTRAR DETALLES DE HABITACION" << endl;
-					cout << H->ImprimeHabitacion(idhabitacion);									
+					cout << H->ImprimeHabitacion(idhabitacion);
 					cout << "================================================================" << endl;
 					cout << "Reservacion" << endl;
 					cout << "	Digite nombre del cliente: " << endl;
@@ -141,75 +143,107 @@ void Interfaz::menu() {
 					cin >> tel;
 					cout << "	Digite Cuenta: " << endl;
 					cin >> cuenta;
-					cout << "	Digite si es todo incluido (s/n): " << endl;
-					cin >> incluido;
+					Cliente* C = new Cliente(nombre, id, tipopago, tel, cuenta);
+					cout << "	Digite si es todo incluido (s/n): " << endl;				
+					cin >> confirmar;
+					if (confirmar == "s" || confirmar == "S")
+						incluido = true;
+					else
+						incluido = false;
 					cout << "	Digite cantidad de personas: " << endl;
 					cin >> cantpersonas;
 					cout << "*VERIFICAR SI LA CANTIDAD DE PERSONAS INGRESADA ES MENOR O IGUAL AL QUE LA HABITACION PERMITE SI NO ES ASI INFORMAR AL CLIENTE, VOLVER A INGRESAR EL NUMERO CORRECTAMENTE O REGRESAR A ELEGIR UNA HABITACION QUE CUMPLA CON LA CAPACIDAD DEL CLIENTE" << endl;
 
-					cout << "	Digite cantidad de niños: " << endl;
-					cin >> cantninos;
-					cout << "	Digite cantidad de adultos: " << endl;
-					cin >> cantadultos;
-					cout << "	Digite fecha de entrada (ej: 06/07/20): " << endl;
-					cout << "Ingrese dia: " << endl; cin >> diaentra; cout << "Ingrese mes: " << endl; cin >> mesentra; cout << "Ingrese año: " << endl; cin >> anoentra;
+					if (H->ComprobarCamas(idhabitacion, cantpersonas) == false) {
+						cout << "Cantidad de Persona no cabe en la Habitacion, Digite un numero de personas valido: " << endl;//Poner un ciclo
+						cin >> cantpersonas;
+						}
+					else {
+						cout << "	Digite cantidad de niños: " << endl;
+						cin >> cantninos;
+						contnino += cantninos;
+						cout << "	Digite cantidad de adultos: " << endl;
+						cin >> cantadultos;
+						conadulto += cantadultos;
+						cout << "Digite la cantida de dias que estara en el Hotel" << endl;
+						cin >> ndias;
+						cout << "	Digite fecha de entrada (ej: 06/07/20): " << endl;
+						cout << "Ingrese dia: " << endl; cin >> diaentra; cout << "Ingrese mes: " << endl; cin >> mesentra; cout << "Ingrese año: " << endl; cin >> anoentra;
 
-					cout << "	Digite fecha de salida(ej: 06/07/20): " << endl;
-					cout << "Ingrese dia: " << endl; cin >> diasale; cout << "Ingrese mes: " << endl; cin >> messale; cout << "Ingrese año: " << endl; cin >> anosale;
+						cout << "	Digite fecha de salida(ej: 06/07/20): " << endl;
+						cout << "Ingrese dia: " << endl; cin >> diasale; cout << "Ingrese mes: " << endl; cin >> messale; cout << "Ingrese año: " << endl; cin >> anosale;
 
-					cout << "	Hora de entrada (ej: 12:00): " << endl;
-					cout << "Ingrese Hora: " << endl; cin >> horaentra; cout << "Ingrese Minuto: " << endl; cin >> minutoentra;
-					cout << "*VERIFICAR SI SE CUMPLE LA HORA PARA APLICAR DESCUENTO O NO" << endl;
+						cout << "	Ingresar Hora de entrada en formato militar por favor (ej: 24H): " << endl;
+						cout << "Ingrese Hora: " << endl; cin >> horaentra; 
+						cout << "*VERIFICAR SI SE CUMPLE LA HORA PARA APLICAR DESCUENTO O NO" << endl;
 
-					cout << "	Hora de salida (ej: 12:00 ): " << endl;
-					cout << "Ingrese Hora: " << endl; cin >> horasale; cout << "Ingrese Minuto: " << endl; cin >> minutosale;
-					cout << "================================================================" << endl;
+						cout << "Ingresar Hora de salida en formato militar por favor (ej: 24H): " << endl;
+						cout << "Ingrese Hora: " << endl; cin >> horasale; 
+						cout << "================================================================" << endl;
+						numreserva = convertirString(cont);
+						Reservacion* R = new Reservacion(numreserva,cantadultos,cantninos,ndias,incluido,diaentra,mesentra,anoentra,diasale,messale,anosale,horaentra,horasale,C);					
+						cont++;
 
-					cout << "**MOSTRAR MONTO A PAGAR**" << endl;
-
+						H->setHabitacion(R,idhabitacion);
+						H->setEstadoHabi('O', idhabitacion);
+						cout << "**MOSTRAR MONTO A PAGAR**" << endl;
+						cout << H->MontoTotal(idhabitacion) << endl;
+					}
 					cout << "================================================================" << endl;
 				}
 				break;
-			case 4://4-Liberar habitacion 
-				cout << "Desea realizar busqueda por Cédula (1) o por Habitación (2)?:  " << endl;
-				cin >> opc5;
-				if (opc5 == 1) {
-					cout << "Procedemos a realizar búsqueda por cédula" << endl;
-					cout << "Digite el ID del cliente: " << endl;
-					cin >> id;
-					cout << "El cliente posee las siguientes reservaciones: " << endl;
-					cout << "**MOSTRAR LAS RESERVACIONES DEL CLIENTE" << endl;
-					cout << "Digite el numero de la reservacion que desee liberar: " << endl;
-					cin >> liberar;
-					cout << "*LLAMAR AL METODO PARA LIBERAR HABITACION" << endl;
-					cout << "Listo!! La habitacion ha sigo liberada" << endl;
-				}
-				else {
-					cout << "Procedemos a realizar búsqueda por Habitación" << endl;
-					cout << "Digite el ID la habitacion: " << endl;
-					cin >> idhabitacion;
-					cout << "*LLAMAR AL METODO QUE VERIFICA SI LA HABITACION ESTA OCUPADA O NO" <<endl;
-					cout << "Listo!! La habitacion ha sigo liberada" << endl;
-				}				
+			case 4://4-Liberar habitacion 													
+				cout << "Digite el ID del cliente o la Habitacion: " << endl;
+				cin >> id;
+				cout << "El cliente posee las siguientes reservaciones: " << endl;
+				cout << "**MOSTRAR LAS RESERVACIONES DEL CLIENTE" << endl;
+				cout << H->MostrarReservaciones(id) << endl;
+				cout << "Digite el numero de la reservacion que desee liberar: " << endl;
+				cin >> liberar;
+				cout << "*LLAMAR AL METODO PARA LIBERAR HABITACION" << endl;
+				H->Liberar(liberar);			
+				cout << "Listo!! La habitacion ha sigo liberada" << endl;
 				break;
 			case 5: //5-Reservaciones por cliente
 				cout << "Digite el ID del cliente: " << endl;
 				cin >> id;
 				cout << "El cliente posee las siguientes reservaciones: " << endl;
 				cout << "**MOSTRAR LAS RESERVACIONES DEL CLIENTE" << endl;
+				cout << H->MostrarReservaciones(id) << endl;
 				cout << "Digita el ID de la reservacion deseada: " << endl;
 				cin >> idreservacion;
 				cout << "*MOSTRAR DETALLES DE LA RESERVACION POR ID" << endl;
+				cout << H->ImprimeReservacionEspecifica(idreservacion);
 				cout << "*MOSTRAR DETALLES DEL MONTO A PAGAR" << endl;
+
 				cout << "================================================================" << endl;
 				break;
 			case 6://6.Cantidad de adultos  y  niños con reservacion 
 				cout << "================================================================" << endl;
-				cout << "Cantidad de niños: " << endl;
+				cout << "Cantidad de niños: " << contnino << endl;
 				cout << "	**LLAMAR METODO DE BUSQUEDA DE NIÑOS EN LA MATRIZ " << endl;
-				cout << "Cantidad de adultos: " << endl;
+				cout << "Cantidad de adultos: " << conadulto <<  endl;
 				cout << "	**LLAMAR METODO DE BUSQUEDA DE ADULTOS EN LA MATRIZ " << endl;
 				cout << "================================================================" << endl;
+				break;
+			case 7://7-	Poner habitación  en mantenimiento  
+				cout << "Digite el ID de la habitacion que desea poner en mantenimiento: " << endl;
+				cin >> idhabitacion;
+				cout << "Estado actual de la habitacion: " << H->EncuentraEstado(idhabitacion) << endl;
+				cout << "Desea poner la habitacion en mantenimiento s / n ? " << endl;
+				cin >> confirmar;
+				if (confirmar == "s") {
+					H->ConfirmarMantenimiento(idhabitacion);
+					cout << "Listo!!! La habitacion " << idhabitacion << " ha quedado en mantenimiento" << endl;
+				}
+				else
+					cout << "GRACIAS" << endl;
+				break;
+			case 8:
+				cout << "Cuánto dinero recaudó hoy el hotel: :D" << endl;
+				cout << H->muestraTotales() << endl;
+				break;
+
 			default:
 				break;
 			}

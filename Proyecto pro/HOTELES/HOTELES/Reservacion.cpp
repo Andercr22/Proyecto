@@ -15,30 +15,31 @@ Reservacion::Reservacion() {
 	horadEntr =0;
 	horaSali = 0;
 	reservacionClie = NULL;
-	Tipo = "";
+	MesEN = 0;
+	AnoEN = 0;
+	MesSalida = 0;
+	AnoSalida = 0;
 }
 
-Reservacion::Reservacion(string l,int A, int N, int D, float M, bool E,string z,string v,int x,int y, Cliente* c,string T) {
+Reservacion::Reservacion(string l,int A, int N, int D, bool E, int z, int m, int B, int v, int ms, int Bs, int x,int y, Cliente* c) {
 	NumeroDeReser = l;
 	Adultos = A;
 	Ninos = N;
 	Ndias = D;
-	Monto = M;
+	Monto = 0;
 	todoIN = E;
 	DiaEn = z;
+	MesEN = m;
+	AnoEN = B;
 	DiaSalida = v;
+	MesSalida = ms;
+	AnoSalida = Bs;
 	horadEntr = x;
 	horaSali = y;
 	reservacionClie = c;
-	Tipo = T;
+	
 }
 
-void Reservacion::setTipo(string t) {
-	Tipo = t;
-}
-string Reservacion::getTipo() {
-	return Tipo;
-}
 
 int Reservacion::getAdultos() {
 	return Adultos;
@@ -62,7 +63,20 @@ int Reservacion::getHoraEntra() {
 int Reservacion::getNdias() {
 	return Ndias;
 }
+Cliente* Reservacion::getCliente() {
+	return reservacionClie;
+}
 
+string Reservacion::getNumeroDeReser() {
+	return NumeroDeReser;
+}
+
+void Reservacion::setCosto(float m) {
+	Monto = m;
+}
+float Reservacion::getCosto() {
+	return Monto;
+}
 
 string Reservacion::ImprimeReservacion() {
 	stringstream s;
@@ -76,9 +90,15 @@ string Reservacion::ImprimeReservacion() {
 	s << "Adultos: " << Adultos << endl;
 	s << "Niños: " << Ninos << endl;
 	s << "Dias de Estancia: " << Ndias << endl;
-	s << "Dia de entrada: " << DiaEn << endl;
-	s << "Dia de salida: " << DiaSalida <<endl;
+	s << "Dia de entrada: " << DiaEn << "/" << MesEN << "/" << AnoEN << endl;
+	s << "Dia de salida: " << DiaSalida << "/" << MesSalida << "/" << AnoSalida << endl;
 	s << "Hora de entrada: " << horadEntr << endl;
 	s << "Hora salida: " << horaSali << endl;
+	return s.str();
+}
+
+string Reservacion::ImprimeIDre() {
+	stringstream s;
+	s << NumeroDeReser << endl;
 	return s.str();
 }

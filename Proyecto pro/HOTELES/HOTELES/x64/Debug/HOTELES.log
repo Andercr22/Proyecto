@@ -1,2 +1,25 @@
-﻿  Interfaz.cpp
+﻿  Habitacion.cpp
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(85,9): warning C4244: 'return': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(99,21): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(99,71): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(145,9): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(150,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(155,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(160,12): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(173,21): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(173,71): warning C4244: 'inicializando': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(190,9): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(195,10): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(200,11): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(205,12): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+  Hotel.cpp
+  Interfaz.cpp
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Interfaz.cpp(7,163): warning C4101: 'minutoentra': variable local sin referencia
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Interfaz.cpp(7,151): warning C4101: 'minutosale': variable local sin referencia
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Interfaz.cpp(7,24): warning C4101: 'opc5': variable local sin referencia
+  Main.cpp
+  Reservacion.cpp
+  Generando código...
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Hotel.cpp(125): warning C4715: 'Hotel::EncuentraEstado': no todas las rutas de acceso de control devuelven un valor
+C:\Users\Ander\Desktop\Proyecto pro\HOTELES\HOTELES\Habitacion.cpp(117): warning C4715: 'Habitacion::descuentoNocturn': no todas las rutas de acceso de control devuelven un valor
   HOTELES.vcxproj -> C:\Users\Ander\Desktop\Proyecto pro\HOTELES\x64\Debug\HOTELES.exe

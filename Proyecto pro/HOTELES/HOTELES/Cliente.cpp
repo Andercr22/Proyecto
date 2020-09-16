@@ -21,3 +21,7 @@ string Cliente::imprimeCliente() {
 	s << "Numero de cuenta del cliente: " << Ncuenta << endl;
 	return s.str();
 }
+
+string Cliente::getID() {
+	return id;
+}

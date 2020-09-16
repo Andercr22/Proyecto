@@ -48,6 +48,8 @@ string Habitacion::getIdentificador() {
 	return Identificador;
 }
 
+
+
 string Habitacion::ImprimeHabitacionConReserva() {
 	stringstream s;
 	s << "Tipo de habitacion: " << clase << endl;
@@ -55,7 +57,7 @@ string Habitacion::ImprimeHabitacionConReserva() {
 	s << "Estado: " << Estado << endl;
 	s << costoSinInclu() << endl;
 	s << "Costo de la habitacion con todo incluido: $300 x adulto,$200 x niño." << endl;
-	if (HabiClie != NULL) {
+	if (HabiReser != NULL) {
 		s << "La reservacion actual seria: " << endl << HabiReser->ImprimeReservacion();
 		if (HabiReser->gettodoIN())
 			s << PagoTodoIncluido() << endl;
@@ -94,12 +96,12 @@ string Habitacion::costoSinInclu() {
 }
 
 string Habitacion::PagoTodoIncluido() {
-	float precioAdulto = HabiReser->getAdultos() * 300; float precioNino = HabiReser->getNinos() * 200; float precioDiario = 0.0; float subtotal = 0.0;
+	float precioAdulto = HabiReser->getAdultos() * 300; float precioNino = HabiReser->getNinos() * 200; float precioDiario = precioAdulto+precioNino; float subtotal = 0.0;
 	stringstream s;		
 	s << "Precio diario adultos ($300 x" << HabiReser->getAdultos() << " adultos) ---------------$" << precioAdulto << endl;		 
 	s << "Precio diario niños ( $200 x" << HabiReser->getNinos() << " niños) ------------------$" << precioNino << endl;
 	if (valorClase() != 0) {
-		precioDiario = (precioAdulto + precioNino) + ((precioAdulto + precioNino) * valorClase());
+		precioDiario = precioDiario + (precioDiario * valorClase());
 		s << "Precio Diario------------------------------------------------$" << precioDiario << endl;
 	}
 	s << "Cantidad De dias-------------------------------------------------: " << HabiReser->getNdias() << endl;
@@ -159,9 +161,67 @@ string Habitacion::ImprimeMontoSinIn() {
 				}
 				else
 					s << "Descuento x entrada nocturna(0%)..........$0" << endl;
-	s << "Total a pagar...................................$" << c + b << endl;
+	s << "Total a pagar...................................$" << b - c << endl;
+	HabiReser->setCosto(b - c);
 	return s.str();
 }
 Habitacion::~Habitacion() {
 	//preguntar como liberar memoria asosiativa
+}
+
+float Habitacion::recaudacioncontodo() {
+	float precioAdulto = HabiReser->getAdultos() * 300; float precioNino = HabiReser->getNinos() * 200;
+	float precioDiario = precioAdulto + precioNino; float subtotal = 0.0;
+	if (valorClase() != 0) {
+		precioDiario = precioDiario + (precioDiario * valorClase());
+	}
+	subtotal = HabiReser->getNdias()* precioDiario;
+	return subtotal;
+}
+float  Habitacion::recaudacionsinin() {
+	float x = valorClase();
+	float y = 0;
+	int z = 0;
+	float a = 0;
+	float tot = 0;
+	z = HabiReser->getAdultos() + HabiReser->getNinos();
+	if (z == 1) {
+		a = ValorNocheSim1;
+		y = a * 0.25;
+	}
+	else
+		if (z == 2) {
+			a = ValorNocheSim2;
+			y = a * 0.20;
+		}
+		else
+			if (z == 3) {
+				a = ValorNocheSim3;
+				y = a * 0.15;
+			}
+			else
+				if (z > 3) {
+					a = ValorNocheSim4;
+					y = a * 0.10;
+				}
+	tot = HabiReser->getNdias() * a;
+	if (x != 0) 
+		tot = tot + (tot * x);
+	
+	if (descuentoNocturn() == true) {
+		tot = tot - y;
+	}
+	
+	return tot;
+}
+
+string Habitacion::ImprimeIDResevacion() {
+	stringstream s;
+	s << HabiReser->ImprimeIDre();
+	return s.str();
+}
+
+void Habitacion::VaciarHabitacion() {
+	delete HabiReser;
+	HabiReser = NULL;
 }

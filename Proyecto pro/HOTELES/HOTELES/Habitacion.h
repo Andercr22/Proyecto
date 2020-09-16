@@ -34,9 +34,7 @@ public:
 	string getclase();
 	int getpacama();
 	float valorClase();
-	string getIdentificador();
-
-	
+	string getIdentificador();	
 	//recordar que hayq ue poner los set y get que se vallan a ocupar mas adelante no se saben todavia 
 	string ImprimeHabitacionConReserva();
 	~Habitacion();
@@ -48,6 +46,10 @@ public:
 	string costoSinInclu();
 	bool descuentoNocturn();
 	string ImprimeMontoSinIn();
+	float recaudacioncontodo();
+	float recaudacionsinin();
+	string ImprimeIDResevacion();
+	void VaciarHabitacion();
 };
 
 #endif /* HABITACION_H */

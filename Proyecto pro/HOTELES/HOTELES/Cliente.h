@@ -21,6 +21,7 @@ public:
 	~Cliente();
 	//no sabesmos cuales get y set se ocuparan
 	string imprimeCliente();
+	string getID();
 };
 
 #endif/*CLIENTE_H*/

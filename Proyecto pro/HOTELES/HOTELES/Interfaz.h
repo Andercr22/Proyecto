@@ -8,6 +8,7 @@
 #include "Cliente.h"
 #include "Reservacion.h"
 #include "Hotel.h"
+#include "Utiles.h"
 class Interfaz
 {
 public:
